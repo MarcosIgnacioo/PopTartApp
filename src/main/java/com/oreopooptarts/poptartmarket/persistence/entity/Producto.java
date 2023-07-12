@@ -2,6 +2,8 @@ package com.oreopooptarts.poptartmarket.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "productos")/*
 In this way java will know when we are using the "Producto" Class we are referring to the
@@ -27,6 +29,11 @@ public class Producto {
     @Column(name = "cantidad_stock")
     private Long cantidadStock;
     private Boolean estado;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+    @OneToMany(mappedBy = "producto")
+    public List<ComprasProducto> productos;
 
     public Long getIdProducto() {
         return idProducto;

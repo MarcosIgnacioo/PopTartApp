@@ -1,6 +1,7 @@
 package com.oreopooptarts.poptartmarket.persistence.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "compras")
@@ -16,6 +17,9 @@ public class Compra {
     String medioPago;
     String comentario;
     String estado;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
 
     public Long getIdCompra() {
         return idCompra;
